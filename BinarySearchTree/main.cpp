@@ -1,9 +1,9 @@
 #include <iostream>
-#include "binaryTree.h"
+#include "avlTree.h"
 
 using namespace std;
 
-BinarySearchTree bst;
+AVLTree avlt;
 int option, ra, imp;
 string name;
 bool found = false;
@@ -14,7 +14,7 @@ void remove();
 void search();
 void print();
 
-int main(int argc, const char *argv[])
+int main()
 {
 
   do
@@ -58,22 +58,22 @@ void insert()
   cout << "Digite o ra do aluno:\n";
   cin >> ra;
   Student std(ra, name);
-  if (bst.isFull())
+  if (avlt.isFull())
     cout << "Binary Search Tree is full!\n";
   else
   {
-    bst.insert(std);
+    avlt.insert(std);
     cout << endl;
   }
 }
 
 void remove()
 {
-  bst.printOrder(bst.getRoot());
+  avlt.printOrder(avlt.getRoot());
   cout << "Digite o ra do aluno:\n";
   cin >> ra;
   Student std(ra, "");
-  bst.remove(std);
+  avlt.remove(std);
   cout << endl;
 }
 
@@ -82,7 +82,7 @@ void search()
   cout << "Digite o ra do aluno:\n";
   cin >> ra;
   Student std(ra, "");
-  bst.search(std, found);
+  avlt.search(std, found);
   if (!found)
   {
     cout << "Aluno não encontrado\n";
@@ -104,13 +104,13 @@ void print()
   switch (imp)
   {
   case 0:
-    bst.printPreOrder(bst.getRoot());
+    avlt.printPreOrder(avlt.getRoot());
     break;
   case 1:
-    bst.printOrder(bst.getRoot());
+    avlt.printOrder(avlt.getRoot());
     break;
   case 2:
-    bst.printPostOrder(bst.getRoot());
+    avlt.printPostOrder(avlt.getRoot());
     break;
   }
 }
