@@ -1,5 +1,5 @@
 #include <iostream>
-#include "graph.h"
+#include "Graph/graph.h"
 
 using namespace std;
 int maxSummits, valueNullEdge;
@@ -10,7 +10,6 @@ void insertSummit(Graph &graph)
 {
   cout << endl;
   cout << "Valor do vértice: ";
-  getchar();
   getline(cin, item1);
   cout << endl;
   graph.insertSummit(item1);
@@ -19,10 +18,10 @@ void insertEdge(Graph &graph)
 {
   cout << endl;
   cout << "Valor da vértice de saída: ";
-  getchar();
   getline(cin, item1);
   cout << "Valor da vértice de entrada: ";
   getline(cin, item2);
+  cout << item1 << " " << item2 << endl;
   cout << "Peso desta aresta: ";
   cin >> weight;
   graph.insertEdge(item1, item2, weight);
@@ -31,7 +30,6 @@ void summitDegree(Graph &graph)
 {
   cout << endl;
   cout << "Valor da vértice: ";
-  getchar();
   getline(cin, item1);
   value = graph.getDegree(item1);
   if (value < 0)
@@ -45,7 +43,6 @@ void edgeWeight(Graph &graph)
 {
   cout << endl;
   cout << "Valor da vértice de saída: ";
-  getchar();
   getline(cin, item1);
   cout << "Valor da vértice de entrada: ";
   getline(cin, item2);
@@ -67,6 +64,39 @@ void printSummits(Graph &graph)
   cout << endl;
   graph.printSummits();
 }
+void breadthFirstSearch(Graph &graph)
+{
+  cout << endl;
+  cout << "Digite o vértice de origem: ";
+  getline(cin, item1);
+  cout << "Digite o vértice de destino: ";
+  getline(cin, item2);
+  graph.breadthFirstSearch(item1, item2);
+}
+void depthFirstSearch(Graph &graph)
+{
+  cout << endl;
+  cout << "Digite o vértice de origem: ";
+  getline(cin, item1);
+  cout << "Digite o vértice de destino: ";
+  getline(cin, item2);
+  graph.depthFirstSearch(item1, item2);
+}
+void menu()
+{
+  cout << endl;
+  cout << "0: parar o algoritmo!\n"
+          "1: inserir um vértice\n"
+          "2: inserir uma aresta\n"
+          "3: imprimir o grau de uma vértice\n"
+          "4: imprimir o peso de uma aresta\n"
+          "5: imprimir a matriz de adjacencias\n"
+          "6: imprimir a lista de vértices\n"
+          "7: busca em largura\n"
+          "8: busca em profundidade\n";
+  cin >> option;
+  cin.get();
+}
 
 int main(int argc, const char *argv[])
 {
@@ -79,15 +109,7 @@ int main(int argc, const char *argv[])
 
   do
   {
-    cout << endl;
-    cout << "0: parar o algoritmo!\n"
-            "1: inserir um vértice\n"
-            "2: inserir uma aresta\n"
-            "3: imprimir o grau de uma vértice\n"
-            "4: imprimir o peso de uma aresta\n"
-            "5: imprimir a matriz de adjacencias\n"
-            "6: imprimir a lista de vértices\n";
-    cin >> option;
+    menu();
     switch (option)
     {
     case 1:
@@ -107,6 +129,12 @@ int main(int argc, const char *argv[])
       break;
     case 6:
       printSummits(graph);
+      break;
+    case 7:
+      breadthFirstSearch(graph);
+      break;
+    case 8:
+      depthFirstSearch(graph);
       break;
     }
   } while (option);

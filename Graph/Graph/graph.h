@@ -1,6 +1,9 @@
-// weighted undirected simple graph
+#ifndef GRAPH_H
+#define GRAPH_H
+
 #include <iostream>
-typedef std::string ItemType;
+#include "../Stack/dynamicStack.h"
+#include "../Queue/dynamicQueue.h"
 
 class Graph
 {
@@ -10,6 +13,7 @@ private:
   int numSummits;
   ItemType *summits;
   int **adjacencyMatrix;
+  bool *marker;
 
 public:
   Graph(int maxSummit, int nullEdge);
@@ -23,4 +27,8 @@ public:
   int getDegree(ItemType node);
   void printMatrix();
   void printSummits();
+  void clearMarker();
+  void breadthFirstSearch(ItemType origin, ItemType dest);
+  void depthFirstSearch(ItemType origin, ItemType dest);
 };
+#endif
